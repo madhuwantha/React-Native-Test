@@ -23,17 +23,20 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 function App() {
   return (
-    <View style={{padding: 30}}>
-      <View>
+    <View style={{padding: 50}}>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignContent: 'center',
+        }}>
         <TextInput
-          style={{borderColor: '#b22222', borderWidth: 1}}
+          style={{width: '80%', borderColor: '#b22222', borderWidth: 1}}
           placeholder="Text Input"
         />
         <Button title="ADD" />
       </View>
-      <View>
-
-      </View>
+      <View></View>
     </View>
   );
 }
