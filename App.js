@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import {StyleSheet, View, TextInput, Button} from 'react-native';
+import {StyleSheet, View, TextInput, Button, Text} from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
@@ -36,7 +36,51 @@ function App() {
         />
         <Button title="ADD" />
       </View>
-      <View></View>
+      <View />
+    </View>
+  );
+}
+
+function FlexBoxes() {
+  return (
+    <View
+      style={{
+        padding: 50,
+        flexDirection: 'row',
+        width: '90%',
+        height: 300,
+        justifyContent: 'space-around',
+        alignItems: 'stretch',
+      }}>
+      <View
+        style={{
+          backgroundColor: 'red',
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <Text>1</Text>
+      </View>
+
+      <View
+        style={{
+          backgroundColor: 'blue',
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <Text>2</Text>
+      </View>
+
+      <View
+        style={{
+          backgroundColor: 'green',
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <Text>3</Text>
+      </View>
     </View>
   );
 }
@@ -80,4 +124,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default FlexBoxes;
