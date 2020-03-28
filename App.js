@@ -23,17 +23,9 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 function App() {
   return (
-    <View style={{padding: 50}}>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignContent: 'center',
-        }}>
-        <TextInput
-          style={{width: '80%', borderColor: '#b22222', borderWidth: 1}}
-          placeholder="Text Input"
-        />
+    <View style={styles.screen}>
+      <View style={styles.inputContainer}>
+        <TextInput style={styles.goalInput} placeholder="Course Goal" />
         <Button title="ADD" />
       </View>
       <View />
@@ -86,9 +78,16 @@ function FlexBoxes() {
 }
 
 const styles = StyleSheet.create({
+  screen: {padding: 50},
   scrollView: {
     backgroundColor: Colors.lighter,
   },
+  inputContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignContent: 'center',
+  },
+    goalInput: {width: '80%', borderColor: '#b22222', borderWidth: 1},
   engine: {
     position: 'absolute',
     right: 0,
@@ -124,4 +123,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FlexBoxes;
+export default App;
