@@ -48,7 +48,12 @@ function App() {
       <FlatList
         keyEctractor={(item, index) => item.key}
         data={courseGoals}
-        renderItem={itemdata => <GoalItem title={itemdata.item.value} />}
+        renderItem={itemdata => (
+          <GoalItem
+            onDelete={() => console.log('chjhb')}
+            title={itemdata.item.value}
+          />
+        )}
       />
       {/*<ScrollView style={{marginTop: 8}}>*/}
       {/*  {courseGoals.map(goal => (*/}
