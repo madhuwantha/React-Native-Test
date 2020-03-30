@@ -6,6 +6,7 @@ const GoalInput = props => {
 
   const goalInputHandler = entertedText => {
     setEntertedGoal(entertedText);
+    entertedText = '';
   };
 
   return (
@@ -16,6 +17,7 @@ const GoalInput = props => {
           style={styles.goalInput}
           placeholder="Course Goal.."
         />
+        <Button title="CACEl" onPress={props.onCancel} color="red" />
         <Button
           onPress={props.onAddGoal.bind(this, entertedGoal)}
           title="ADD"

@@ -44,6 +44,10 @@ function App() {
     setIsAddMode(false);
   };
 
+  const cancelHandler = () => {
+    setIsAddMode(false);
+  };
+
   const removeGoalItemHandler = goalId => {
     setCourseGoals(currentGoals => {
       return currentGoals.filter(goal => goal.key !== goalId);
@@ -53,7 +57,11 @@ function App() {
   return (
     <View style={styles.screen}>
       <Button onPress={() => setIsAddMode(true)} title="Add a new goal" />
-      <GoalInput visible={isAddMode} onAddGoal={goalAddHandler} />
+      <GoalInput
+        visible={isAddMode}
+        onAddGoal={goalAddHandler}
+        onCancel={cancelHandler}
+      />
       <FlatList
         keyEctractor={(item, index) => item.key}
         data={courseGoals}
