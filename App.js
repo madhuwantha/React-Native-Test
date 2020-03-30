@@ -18,6 +18,8 @@ import {
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+// Custom components
+import GoalItem from './components/GoalItem';
 
 // import defaults from '@babel/runtime/helpers/esm/defaults';
 
@@ -56,11 +58,7 @@ function App() {
       <FlatList
         keyEctractor={(item, index) => item.key}
         data={courseGoals}
-        renderItem={itemdata => (
-          <View style={styles.textView}>
-            <Text>{itemdata.item.value}</Text>
-          </View>
-        )}
+        renderItem={itemdata => <GoalItem title={itemdata.item.value} />}
       />
       {/*<ScrollView style={{marginTop: 8}}>*/}
       {/*  {courseGoals.map(goal => (*/}
@@ -133,13 +131,6 @@ const styles = StyleSheet.create({
   engine: {
     position: 'absolute',
     right: 0,
-  },
-  textView: {
-    borderColor: 'black',
-    borderWidth: 1,
-    padding: 10,
-    marginVertical: 4,
-    backgroundColor: '#ccc9b0',
   },
   body: {
     backgroundColor: Colors.white,
