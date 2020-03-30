@@ -6,8 +6,16 @@
  * @flow strict-local
  */
 
-import React from 'react';
-import {StyleSheet, View, TextInput, Button, Text} from 'react-native';
+import React, {useState} from 'react';
+import {
+  StyleSheet,
+  View,
+  TextInput,
+  Button,
+  Text,
+  ScrollView,
+  FlatList,
+} from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
@@ -22,13 +30,45 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 // };
 
 function App() {
+  const [entertedGoal, setEntertedGoal] = useState('');
+  const [courseGoals, setCourseGoals] = useState([]);
+
+  const goalInputHandler = entertedText => {
+    setEntertedGoal(entertedText);
+  };
+  const goalAddHandler = () => {
+    setCourseGoals(curentGoals => [
+      ...curentGoals,
+      {key: Math.random().toString(), value: entertedGoal},
+    ]);
+    // console.log(courseGoals);
+  };
   return (
     <View style={styles.screen}>
       <View style={styles.inputContainer}>
-        <TextInput style={styles.goalInput} placeholder="Course Goal" />
-        <Button title="ADD" />
+        <TextInput
+          onChangeText={goalInputHandler}
+          style={styles.goalInput}
+          placeholder="Course Goal.."
+        />
+        <Button onPress={goalAddHandler} title="ADD" />
       </View>
-      <View />
+      <FlatList
+        keyEctractor={(item, index) => item.key}
+        data={courseGoals}
+        renderItem={itemdata => (
+          <View style={styles.textView}>
+            <Text>{itemdata.item.value}</Text>
+          </View>
+        )}
+      />
+      {/*<ScrollView style={{marginTop: 8}}>*/}
+      {/*  {courseGoals.map(goal => (*/}
+      {/*    <View style={styles.textView}>*/}
+      {/*      <Text>{goal}</Text>*/}
+      {/*    </View>*/}
+      {/*  ))}*/}
+      {/*</ScrollView>*/}
     </View>
   );
 }
@@ -73,54 +113,8 @@ function FlexBoxes() {
         }}>
         <Text>3</Text>
       </View>
-<<<<<<< HEAD
-=======
+
       <View />
-    </View>
-  );
-}
-
-function FlexBoxes() {
-  return (
-    <View
-      style={{
-        padding: 50,
-        flexDirection: 'row',
-        width: '90%',
-        height: 300,
-        justifyContent: 'space-around',
-        alignItems: 'stretch',
-      }}>
-      <View
-        style={{
-          backgroundColor: 'red',
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-        <Text>1</Text>
-      </View>
-
-      <View
-        style={{
-          backgroundColor: 'blue',
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-        <Text>2</Text>
-      </View>
-
-      <View
-        style={{
-          backgroundColor: 'green',
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-        <Text>3</Text>
-      </View>
->>>>>>> 5be24e7... 8. React Native Flexbox Deep Dive.mp4
     </View>
   );
 }
@@ -135,10 +129,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignContent: 'center',
   },
-    goalInput: {width: '80%', borderColor: '#b22222', borderWidth: 1},
+  goalInput: {width: '80%', borderColor: '#b22222', borderWidth: 1},
   engine: {
     position: 'absolute',
     right: 0,
+  },
+  textView: {
+    borderColor: 'black',
+    borderWidth: 1,
+    padding: 10,
+    marginVertical: 4,
+    backgroundColor: '#ccc9b0',
   },
   body: {
     backgroundColor: Colors.white,
@@ -171,4 +172,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FlexBoxes;
+export default App;
