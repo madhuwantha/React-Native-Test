@@ -20,6 +20,7 @@ import {
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 // Custom components
 import GoalItem from './components/GoalItem';
+import GoalInput from './components/GoalInput';
 
 // import defaults from '@babel/runtime/helpers/esm/defaults';
 
@@ -32,29 +33,18 @@ import GoalItem from './components/GoalItem';
 // };
 
 function App() {
-  const [entertedGoal, setEntertedGoal] = useState('');
   const [courseGoals, setCourseGoals] = useState([]);
 
-  const goalInputHandler = entertedText => {
-    setEntertedGoal(entertedText);
-  };
-  const goalAddHandler = () => {
+  const goalAddHandler = goalTitle => {
     setCourseGoals(curentGoals => [
       ...curentGoals,
-      {key: Math.random().toString(), value: entertedGoal},
+      {key: Math.random().toString(), value: goalTitle},
     ]);
-    // console.log(courseGoals);
   };
+
   return (
     <View style={styles.screen}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          onChangeText={goalInputHandler}
-          style={styles.goalInput}
-          placeholder="Course Goal.."
-        />
-        <Button onPress={goalAddHandler} title="ADD" />
-      </View>
+      <GoalInput onAddGoal={goalAddHandler} />
       <FlatList
         keyEctractor={(item, index) => item.key}
         data={courseGoals}
@@ -122,12 +112,6 @@ const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: Colors.lighter,
   },
-  inputContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignContent: 'center',
-  },
-  goalInput: {width: '80%', borderColor: '#b22222', borderWidth: 1},
   engine: {
     position: 'absolute',
     right: 0,
