@@ -42,6 +42,12 @@ function App() {
     ]);
   };
 
+  const removeGoalItemHandler = goalId => {
+    setCourseGoals(currentGoals => {
+      return currentGoals.filter(goal => goal.key !== goalId);
+    });
+  };
+
   return (
     <View style={styles.screen}>
       <GoalInput onAddGoal={goalAddHandler} />
@@ -50,7 +56,8 @@ function App() {
         data={courseGoals}
         renderItem={itemdata => (
           <GoalItem
-            onDelete={() => console.log('chjhb')}
+            id={itemdata.item.key}
+            onDelete={removeGoalItemHandler}
             title={itemdata.item.value}
           />
         )}
